@@ -35,6 +35,7 @@ export default function Header() {
           <Logo href={'/'}>Ecommerce</Logo>
 
           <StyledNav>
+            <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>All Products</NavLink>
             <NavLink href={'/categories'}>Categories</NavLink>
             <NavLink href={'/account'}>Account</NavLink>
