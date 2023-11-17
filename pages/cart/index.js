@@ -34,8 +34,11 @@ const ProductInfoCell = styled.td`
 
 const TitleBox = styled.div`
   font-size: larger;
-  padding-top: 10px;
   font-weight: 400;
+`;
+
+const QuantityLabel = styled.span`
+  padding: 0 5px;
 `;
 
 const ProductImageBox = styled.div`
@@ -43,6 +46,7 @@ const ProductImageBox = styled.div`
   max-height: 135px;
   padding: 15px;
   box-shadow: 0 0 8px #aaa;
+  margin: 10px 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   display: flex;
@@ -55,7 +59,7 @@ const ProductImageBox = styled.div`
 `;
 
 export default function CartPage() {
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -67,6 +71,10 @@ export default function CartPage() {
       });
     }
   }, [cartProducts]);
+
+  // function addProduct(productID) {
+  //   setCartProducts(prev => [...prev, productID]);
+  // }
 
   return (
     <>
@@ -80,8 +88,8 @@ export default function CartPage() {
               <h2>Cart</h2>
               <Table>
                 <thead>
-                  <th>Produts</th>
-                  <th>Quanity</th>
+                  <th>Products</th>
+                  <th>Quantity</th>
                   <th>Price</th>
                 </thead>
                 {products
@@ -96,12 +104,28 @@ export default function CartPage() {
                           </ProductImageBox>
                           <TitleBox>{product.title}</TitleBox>
                         </ProductInfoCell>
+                        {/* number of items */}
                         <td>
-                          {cartProducts.filter(id => id === product._id).length}
+                          <Button onClick={() => removeProduct(product._id)}>
+                            -
+                          </Button>
+                          <QuantityLabel>
+                            {
+                              cartProducts.filter(id => id === product._id)
+                                .length
+                            }
+                          </QuantityLabel>
+                          <Button onClick={() => addProduct(product._id)}>
+                            +
+                          </Button>
                         </td>
+                        {/* quantity calculated price */}
                         <td>
-                          {cartProducts.filter(id => id === product._id)
-                            .length * product.price}
+                          ${' '}
+                          {(
+                            cartProducts.filter(id => id === product._id)
+                              .length * product.price
+                          ).toFixed(2)}
                         </td>
                       </tbody>
                     ))
