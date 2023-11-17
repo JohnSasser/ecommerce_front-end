@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Center from './Center';
-import ProductBox from './ProductBox';
+import Center from '../center';
+import ProductBox from '../productBox';
 
 const ProductGrid = styled.div`
   display: grid;
@@ -10,12 +10,15 @@ const ProductGrid = styled.div`
 `;
 
 export default function NewProducts({ new_products }) {
-  console.log(new_products);
   return (
     <Center>
       <ProductGrid>
         {new_products.length > 0
-          ? new_products.map(product => <ProductBox {...product}> </ProductBox>)
+          ? new_products.map(product => (
+              <ProductBox key={product._id} {...product}>
+                {' '}
+              </ProductBox>
+            ))
           : null}
       </ProductGrid>
     </Center>

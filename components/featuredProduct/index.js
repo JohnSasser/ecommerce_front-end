@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import Center from './center';
-import Button from './Button';
-import ButtonLink from './ButtonLink';
-import CartIcon from './icons/cart';
+import Center from '../center';
+import Button from '../button/Button';
+import ButtonLink from '../button/ButtonLink';
+import CartIcon from '../icons/cart';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
 
 const StyledDiv = styled.div`
   background-color: #222;
@@ -45,6 +47,12 @@ const Column = styled.div`
 
 export default function FeaturedProduct({ featured_product }) {
   // console.log(featured_product);
+  const { addProduct } = useContext(CartContext);
+  const addFeaturedtoCart = function () {
+    console.log('fire');
+    setCartProducts(prev => [...prev, featured_product._id]);
+  };
+
   return (
     <StyledDiv>
       <Center>
@@ -55,18 +63,23 @@ export default function FeaturedProduct({ featured_product }) {
             <ButtonWrapper>
               <ButtonLink
                 href={'/products/' + featured_product._id}
-                outline={1}
-                white={1}
+                $outline
+                $white
                 size="large"
               >
                 Read More
               </ButtonLink>
-              <Button primary size="large">
+
+              <Button
+                onClick={() => addProduct(featured_product._id)}
+                size="large"
+              >
                 <CartIcon style={{ marginRight: '8px' }} />
                 Add To Cart
               </Button>
             </ButtonWrapper>
           </Column>
+
           <Column
             className="col_2"
             style={{ display: 'flex', justifyContent: 'center' }}
