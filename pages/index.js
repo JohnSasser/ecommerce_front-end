@@ -1,5 +1,5 @@
-import Header from '@/components/Header';
-import FeaturedProduct from '@/components/FeaturedProduct';
+import Header from '@/components/header';
+import FeaturedProduct from '@/components/featuredProduct';
 import { Product } from '@/models/product_model';
 import { mongooseConnect } from '@/lib/mongoose';
 import NewProducts from '@/components/newProducts';
