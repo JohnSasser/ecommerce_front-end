@@ -27,6 +27,7 @@ export const ButtonStyle = css`
       background-color: #fff;
       color: #000;
     `}
+
   ${props =>
     props.$white &&
     props.$outline &&
@@ -36,7 +37,7 @@ export const ButtonStyle = css`
       border: 1px solid #fff;
     `}
 
-    /* styling for dark buttons */
+    /* purple button */
   ${props =>
     props.$dark &&
     !props.$outline &&
@@ -44,6 +45,7 @@ export const ButtonStyle = css`
       background-color: #222222;
       color: #fff;
     `}
+    
   ${props =>
     props.$dark &&
     props.$outline &&
@@ -54,7 +56,7 @@ export const ButtonStyle = css`
     `}
 
 
-    /* style for dark buttons Purple hue */
+    /* purple button & out */
   ${props =>
     props.$primary &&
     !props.$outline &&
@@ -63,6 +65,7 @@ export const ButtonStyle = css`
       color: #fff;
       border: 1px solid ${PrimaryColorDark};
     `}
+
     ${props =>
     props.$primary &&
     props.$outline &&
@@ -72,12 +75,24 @@ export const ButtonStyle = css`
       border: 2px solid ${PrimaryColorDark};
     `}
 
+    /* large button */
   ${props =>
     props.$size === 'large' &&
     css`
       font-size: 1rem;
       padding: 15px;
       margin: 25px 5px;
+    `}
+
+    /* small button */
+${props =>
+    props.$size === 'small' &&
+    css`
+      font-size: 0.75rem;
+      padding: 8px;
+      margin: 0 5px;
+      max-height: 20px;
+      max-width: 25px;
     `}
 `;
 
