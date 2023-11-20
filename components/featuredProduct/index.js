@@ -65,14 +65,14 @@ export default function FeaturedProduct({ featured_product }) {
                 href={'/products/' + featured_product._id}
                 $outline
                 $white
-                size="large"
+                $size="large"
               >
                 Read More
               </ButtonLink>
 
               <Button
                 onClick={() => addProduct(featured_product._id)}
-                size="large"
+                $size="large"
               >
                 <CartIcon style={{ marginRight: '8px' }} />
                 Add To Cart

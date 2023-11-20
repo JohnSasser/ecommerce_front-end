@@ -3,6 +3,7 @@ import { css, styled } from 'styled-components';
 
 export const ButtonStyle = css`
   border: 0;
+  margin: 0 8px;
   padding: 4px 8px;
   border-radius: 4px;
   display: inline-flex;
@@ -72,7 +73,7 @@ export const ButtonStyle = css`
     `}
 
   ${props =>
-    props.size === 'large' &&
+    props.$size === 'large' &&
     css`
       font-size: 1rem;
       padding: 15px;

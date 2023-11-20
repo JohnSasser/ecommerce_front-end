@@ -66,12 +66,23 @@ export default function CartPage() {
     const url = '/api/cart';
     if (cartProducts.length > 0) {
       axios.post(url, { ids: cartProducts }).then(res => {
-        console.log('products: ', res);
         setProducts(res.data);
       });
     }
   }, [cartProducts]);
 
+  const getTotal = () => {
+    let totalPrice = 0;
+    for (const productID of cartProducts) {
+      // iterate over the products and return a product price were ids match.
+      const price = products.find(
+        p => p._id === productID && p.price !== 0
+      ).price;
+      totalPrice += price;
+    }
+    console.log('fire');
+    return totalPrice;
+  };
 
   return (
     <>
@@ -127,6 +138,9 @@ export default function CartPage() {
                       </tbody>
                     ))
                   : null}{' '}
+                <tr>
+                  <td>total: {products && cartProducts ? getTotal() : null}</td>
+                </tr>
               </Table>
             </Box>
           )}
@@ -136,7 +150,7 @@ export default function CartPage() {
               <h2>Order Info</h2>
               <input type="text" placeholder="Address" />
               <input type="text" placeholder="Address 2" />
-              <Button block $dark size={'large'}>
+              <Button $dark $size={'large'}>
                 Continue Checkout
               </Button>
             </Box>
