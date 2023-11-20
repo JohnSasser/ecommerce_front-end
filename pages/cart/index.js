@@ -72,9 +72,6 @@ export default function CartPage() {
     }
   }, [cartProducts]);
 
-  // function addProduct(productID) {
-  //   setCartProducts(prev => [...prev, productID]);
-  // }
 
   return (
     <>
