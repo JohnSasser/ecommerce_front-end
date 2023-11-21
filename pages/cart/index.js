@@ -9,6 +9,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Table from '@/components/table';
 import Input from '@/components/input';
+import { redirect } from 'next/navigation';
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -99,16 +100,62 @@ export default function CartPage() {
   const getTotal = () => {
     let totalPrice = 0;
     for (const productID of cartProducts) {
-      // iterate over the products and return a product price were ids match.
+      // iterate over the products and return a product price where ids match.
       const price = products.find(
         p => p._id === productID && p.price !== 0
       ).price;
       totalPrice += price;
     }
 
-    return totalPrice;
+    return totalPrice.toFixed(2);
   };
 
+  async function checkoutSubmission(e) {
+    e.preventDefault();
+
+    const productOrder = {};
+    cartProducts.forEach(el => {
+      productOrder[el] = (productOrder[el] || 0) + 1;
+    });
+
+    const data = {
+      name,
+      email,
+      street,
+      city,
+      zip,
+      country,
+      productOrder,
+    };
+
+    console.log(data);
+    const response = await axios.post('/api/checkout', data);
+    const stripe_redirect = response.data.url;
+
+    if (response.status === 200) {
+      console.log(stripe_redirect);
+      window.location.assign(stripe_redirect);
+    } else err => console.error(err);
+  }
+
+  if (window.location.href.includes('success=true')) {
+    return (
+      <>
+        <Header />
+        <Center>
+          <Box>
+            <h2>Thanks for your order!</h2>
+            <p>
+              We will be sending your order confirmation and details out
+              shortly,
+              <br /> 
+              via the provided email.
+            </p>
+          </Box>
+        </Center>
+      </>
+    );
+  }
   return (
     <>
       <Header />
@@ -186,19 +233,19 @@ export default function CartPage() {
             </Box>
           )}
 
-          {/* order info on right  */}
+          {/* order info */}
           {!!cartProducts?.length && (
             <Box>
               <h2>Order Info</h2>
 
-              <form method="post" action="/api/checkout">
+              <form onSubmit={checkoutSubmission}>
                 <Input
                   type="text"
                   placeholder="Name"
                   required="true"
                   name="name"
                   value={name}
-                  onChange={e => setName(e.target.value)}
+                  onChange={e => setName(e.target.value.trim())}
                 />
                 <Input
                   type="email"
@@ -242,9 +289,13 @@ export default function CartPage() {
                   value={country}
                   onChange={e => setCountry(e.target.value)}
                 />
-                <input type="hidden" value={cartProducts.join(',')} />
+                <input
+                  type="hidden"
+                  name="ProductIDs"
+                  value={cartProducts.join(',')}
+                />
 
-                <Button $dark $size={'large'} type="Submit">
+                <Button $dark $size={'large'}>
                   Continue Checkout
                 </Button>
               </form>
