@@ -21,6 +21,7 @@ const Box = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 30px;
+  height: fit-content;
 `;
 
 const ProductInfoCell = styled.td`
@@ -241,12 +242,12 @@ export default function CartPage() {
                   value={country}
                   onChange={e => setCountry(e.target.value)}
                 />
+                <input type="hidden" value={cartProducts.join(',')} />
 
                 <Button $dark $size={'large'} type="Submit">
                   Continue Checkout
                 </Button>
               </form>
-              
             </Box>
           )}
         </ColumnsWrapper>
