@@ -17,6 +17,7 @@ export default function ProductsPage({ products }) {
   );
 }
 
+// next native function to pre-render page with api response;
 export async function getServerSideProps() {
   await mongooseConnect();
   const products = await Product.find({}, null, { sort: { _id: -1 } });

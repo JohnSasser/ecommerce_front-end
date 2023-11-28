@@ -14,6 +14,7 @@ export default function Home({ featured_product, new_products }) {
   );
 }
 
+// next native function to pre-render page with api response;
 export async function getServerSideProps() {
   const featuredProductID = '651dc19342246534583237e2';
 

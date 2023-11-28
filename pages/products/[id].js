@@ -9,13 +9,12 @@ import styled from 'styled-components';
 
 const ColumnWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.2fr .8fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
   margin-top: 20px;
 `;
 
 export default function ProductPage({ product }) {
-  console.log('product: ', product);
   return (
     <>
       <Header />
@@ -34,6 +33,7 @@ export default function ProductPage({ product }) {
   );
 }
 
+// next native function to pre-render page with api response;
 export async function getServerSideProps(context) {
   await mongooseConnect();
   const { id } = context.query;
