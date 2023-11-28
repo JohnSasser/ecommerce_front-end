@@ -30,16 +30,19 @@ export default async function handler(req, res) {
       });
     });
 
+    // saving to db
     const order_document = await Order.create({
       line_items: order_items,
       name: name,
       email: email,
+      street: street,
       city: city,
       zip: zip,
       county: county,
       paid: false,
     });
 
+    // stripe payment session
     const session = await stripe.checkout.sessions.create({
       line_items: order_items,
       mode: 'payment',

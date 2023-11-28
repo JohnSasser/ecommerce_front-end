@@ -46,12 +46,8 @@ const Column = styled.div`
 `;
 
 export default function FeaturedProduct({ featured_product }) {
-  // console.log(featured_product);
+  
   const { addProduct } = useContext(CartContext);
-  const addFeaturedtoCart = function () {
-    console.log('fire');
-    setCartProducts(prev => [...prev, featured_product._id]);
-  };
 
   return (
     <StyledDiv>

@@ -5,7 +5,7 @@ import { ButtonStyle } from './Button';
 const StyledLink = styled(Link)`
   ${ButtonStyle}
 `;
-// console.log(ButtonStyle);
+
 export default function ButtonLink(props) {
   return <StyledLink {...props} />;
 }

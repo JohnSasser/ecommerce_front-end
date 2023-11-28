@@ -1,15 +1,16 @@
 import Button from '@/components/button/Button';
 import Center from '@/components/center';
 import Header from '@/components/header';
+import Table from '@/components/table';
+import Input from '@/components/input';
 
 import { CartContext } from '@/context/CartContext';
 import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { useUrl } from 'nextjs-current-url';
 
+import axios from 'axios';
 import styled from 'styled-components';
-import Table from '@/components/table';
-import Input from '@/components/input';
-import { redirect } from 'next/navigation';
+
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -77,7 +78,8 @@ const AddressBox = styled.span`
 `;
 
 export default function CartPage() {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext);
+  const { cartProducts, addProduct, removeProduct, clearCart } =
+    useContext(CartContext);
   const [products, setProducts] = useState([]);
 
   const [name, setName] = useState('');
@@ -86,6 +88,9 @@ export default function CartPage() {
   const [city, setCity] = useState('');
   const [zip, setZip] = useState('');
   const [country, setCountry] = useState('');
+
+  const { href: currentUrl, pathname } = useUrl() ?? {};
+  const [paymentComplete, setPaymentComplete] = useState(false);
 
   useEffect(() => {
     const url = '/api/cart';
@@ -96,6 +101,14 @@ export default function CartPage() {
     }
     setProducts([]);
   }, [cartProducts]);
+
+  useEffect(() => {
+    //if url has success=true,
+    //empty cart, and set state to show thanks for order card
+    if (currentUrl?.includes('success=true')) {
+      setProducts([]), clearCart(), setPaymentComplete(true);
+    }
+  }, [pathname]);
 
   const getTotal = () => {
     let totalPrice = 0;
@@ -128,17 +141,17 @@ export default function CartPage() {
       productOrder,
     };
 
-    console.log(data);
+    
     const response = await axios.post('/api/checkout', data);
     const stripe_redirect = response.data.url;
 
     if (response.status === 200) {
-      console.log(stripe_redirect);
+      
       window.location.assign(stripe_redirect);
     } else err => console.error(err);
   }
 
-  if (window.location.href.includes('success=true')) {
+  if (paymentComplete === true) {
     return (
       <>
         <Header />
@@ -146,10 +159,8 @@ export default function CartPage() {
           <Box>
             <h2>Thanks for your order!</h2>
             <p>
-              We will be sending your order confirmation and details out
-              shortly,
-              <br /> 
-              via the provided email.
+              We will be sending the order details shortly.
+              <br />
             </p>
           </Box>
         </Center>
@@ -242,15 +253,15 @@ export default function CartPage() {
                 <Input
                   type="text"
                   placeholder="Name"
-                  required="true"
+                  required={true}
                   name="name"
                   value={name}
-                  onChange={e => setName(e.target.value.trim())}
+                  onChange={e => setName(e.target.value)}
                 />
                 <Input
                   type="email"
                   placeholder="Email"
-                  required="true"
+                  required={true}
                   name="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -258,7 +269,7 @@ export default function CartPage() {
                 <Input
                   type="text"
                   placeholder="Street Address"
-                  required="true"
+                  required={true}
                   name="street"
                   value={street}
                   onChange={e => setStreet(e.target.value)}
@@ -267,7 +278,7 @@ export default function CartPage() {
                   <Input
                     type="text"
                     placeholder="City"
-                    required="true"
+                    required={true}
                     name="city"
                     value={city}
                     onChange={e => setCity(e.target.value)}
@@ -275,7 +286,7 @@ export default function CartPage() {
                   <Input
                     type="text"
                     placeholder="Postal Code"
-                    required="true"
+                    required={true}
                     name="zip"
                     value={zip}
                     onChange={e => setZip(e.target.value)}
@@ -283,18 +294,12 @@ export default function CartPage() {
                 </AddressBox>
                 <Input
                   type="text"
-                  required="true"
+                  required={true}
                   placeholder="Country"
                   name="country"
                   value={country}
                   onChange={e => setCountry(e.target.value)}
                 />
-                <input
-                  type="hidden"
-                  name="ProductIDs"
-                  value={cartProducts.join(',')}
-                />
-
                 <Button $dark $size={'large'}>
                   Continue Checkout
                 </Button>
