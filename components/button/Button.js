@@ -92,8 +92,9 @@ ${props =>
       font-size: 0.75rem;
       padding: 8px;
       margin: 0 5px;
-      max-height: 20px;
-      max-width: 25px;
+      height: 20px;
+      width: 25px;
+      justify-content: center;
     `}
 `;
 

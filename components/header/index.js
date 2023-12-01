@@ -25,6 +25,10 @@ const NavLink = styled(Link)`
   display: block;
   color: #aaa;
   text-decoration: none;
+  padding: 10px 0;
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const StyledNav = styled.nav`
@@ -70,7 +74,12 @@ export default function Header() {
           <Logo href={'/'}>Ecommerce</Logo>
 
           <StyledNav $mobileNav={mobileNav}>
-            <NavLink href={'/'}>Home</NavLink>
+            <NavLink
+              onClick={mobileNav ? () => setMobileNav(false) : null}
+              href={'/'}
+            >
+              Home
+            </NavLink>
             <NavLink href={'/products'}>All Products</NavLink>
             <NavLink href={'/categories'}>Categories</NavLink>
             <NavLink href={'/account'}>Account</NavLink>

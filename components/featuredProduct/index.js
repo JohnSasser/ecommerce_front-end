@@ -9,13 +9,20 @@ import { CartContext } from '../../context/CartContext';
 const StyledDiv = styled.div`
   background-color: #222;
   color: #fff;
-  padding: 50px 0;
+  padding: 0;
+  
+  @media screen and (min-width: 786px) {
+    padding: 20px 0;
+  }
 `;
 
 const Title = styled.h1`
   margin: 0;
-  /* font-weight: bold; */
-  font-size: xxx-large;
+  font-size: 1.75em;
+
+  @media screen and (min-width: 768px) {
+    font-size: xxx-large;
+  }
 `;
 
 const Desc = styled.p`
@@ -26,11 +33,26 @@ const Desc = styled.p`
 
 const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1.1fr 0.8fr;
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 20px 40px;
+
+  div:nth-child(1) {
+    order: 2;
+  }
   img {
     max-width: 100%;
-    max-height: 200px;
+    max-height: 120px;
+  }
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: 1.1fr 0.8fr;
+    div:nth-child(1) {
+      order: 0;
+    }
+    img {
+      max-width: 100%;
+      max-height: 200px;
+    }
   }
 `;
 
@@ -46,7 +68,6 @@ const Column = styled.div`
 `;
 
 export default function FeaturedProduct({ featured_product }) {
-  
   const { addProduct } = useContext(CartContext);
 
   return (

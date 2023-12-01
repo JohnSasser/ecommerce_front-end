@@ -11,12 +11,22 @@ import { useUrl } from 'nextjs-current-url';
 import axios from 'axios';
 import styled from 'styled-components';
 
-
 const ColumnsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1.3fr 0.7fr;
   gap: 40px;
   margin-top: 40px;
+  div:nth-child(1) {
+    order: 0;
+  }
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+    margin-bottom: 50px;
+
+    div:nth-child(1) {
+      order: 2;
+    }
+  }
 `;
 
 const Box = styled.div`
@@ -43,6 +53,10 @@ const TitleBox = styled.div`
 
 const QuantityLabel = styled.span`
   padding: 0 5px;
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+  }
 `;
 
 const ProductImageBox = styled.div`
@@ -59,6 +73,19 @@ const ProductImageBox = styled.div`
   img {
     max-width: 120px;
     max-height: 120px;
+  }
+`;
+
+const ProductQuantityBox = styled.td`
+  width: 120px;
+  text-align: center;
+
+  span {
+    padding-top: 3px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 65px;
   }
 `;
 
@@ -141,12 +168,10 @@ export default function CartPage() {
       productOrder,
     };
 
-    
     const response = await axios.post('/api/checkout', data);
     const stripe_redirect = response.data.url;
 
     if (response.status === 200) {
-      
       window.location.assign(stripe_redirect);
     } else err => console.error(err);
   }
@@ -198,7 +223,7 @@ export default function CartPage() {
                           <TitleBox>{product.title}</TitleBox>
                         </ProductInfoCell>
                         {/* number of items */}
-                        <td>
+                        <ProductQuantityBox>
                           <Button
                             $size="small"
                             onClick={() => removeProduct(product._id)}
@@ -217,7 +242,7 @@ export default function CartPage() {
                           >
                             +
                           </Button>
-                        </td>
+                        </ProductQuantityBox>
                         {/* quantity calculated price, per item */}
                         <td>
                           ${' '}
@@ -300,6 +325,7 @@ export default function CartPage() {
                   value={country}
                   onChange={e => setCountry(e.target.value)}
                 />
+
                 <Button $dark $size={'large'}>
                   Continue Checkout
                 </Button>

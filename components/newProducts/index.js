@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Center from '../center';
-import ProductBox from '../productBox';
 import ProductGrid from '../productGrid';
 
 
