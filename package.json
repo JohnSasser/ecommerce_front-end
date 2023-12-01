@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react": "^18.2.39",
     "axios": "^1.6.2",
     "micro": "^10.0.1",
     "mongoose": "^8.0.0",

@@ -46,7 +46,6 @@ const ImageButton = styled.div`
         `}
 `;
 
-
 export default function ProductImages({ images }) {
   const [activeImage, setActiveImage] = useState(images?.[0]);
 
@@ -55,19 +54,18 @@ export default function ProductImages({ images }) {
       <PremierImageWrapper>
         <PremierImage src={activeImage} alt="product image" />
       </PremierImageWrapper>
+
       <ImageButtons>
         {images.map((x, idx) => (
           <ImageButton active={activeImage === x ? 'true' : 'false'}>
-            {idx < 3 ? (
-              <StyledImage
-                onClick={() => setActiveImage(x)}
-                src={x}
-                alt={`image${idx}`}
-              />
-            ) : null}
+            <StyledImage
+              onClick={() => setActiveImage(x)}
+              src={x}
+              alt={'image' + idx}
+            />
           </ImageButton>
-        ))}{' '}
+        ))}
       </ImageButtons>
     </>
-  );
-}
+  )
+};

@@ -1,4 +1,5 @@
 import { PrimaryColor, PrimaryColorDark } from '@/lib/colors';
+import { useState } from 'react';
 import { css, styled } from 'styled-components';
 
 export const ButtonStyle = css`
@@ -101,5 +102,14 @@ export const StyledButton = styled.button`
 `;
 
 export default function Button({ children, ...props }) {
-  return <StyledButton {...props}>{children}</StyledButton>;
+  const [clicked, setClicked] = useState();
+  return (
+    <StyledButton
+      $clicked={clicked}
+      onClick={() => setClicked(!clicked)}
+      {...props}
+    >
+      {children}
+    </StyledButton>
+  );
 }

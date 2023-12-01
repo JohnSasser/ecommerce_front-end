@@ -4,7 +4,7 @@ import { Poppins } from 'next/font/google';
 import { CartContextProvider } from '@/context/CartContext';
 
 const poppins = Poppins({
-  weight: ['400', '700', '900'],
+  weight: ['400', '500', '700', '900'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
 });

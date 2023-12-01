@@ -18,6 +18,7 @@ export default function ProductsPage({ products }) {
 }
 
 // next native function to pre-render page with api response;
+// https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props#when-should-i-use-getserversideprops
 export async function getServerSideProps() {
   await mongooseConnect();
   const products = await Product.find({}, null, { sort: { _id: -1 } });
