@@ -8,10 +8,14 @@ const Grid = styled.div`
   padding-top: 30px;
 
   @media screen and (min-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1000px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 416px) {
     grid-template-columns: 1fr;
   }
 `;

@@ -5,12 +5,13 @@ import ButtonLink from '../button/ButtonLink';
 import CartIcon from '../icons/cart';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
+import IconButtonContainer from '../icons/iconButton';
 
 const StyledDiv = styled.div`
   background-color: #222;
   color: #fff;
   padding: 0;
-  
+
   @media screen and (min-width: 786px) {
     padding: 20px 0;
   }
@@ -68,8 +69,6 @@ const Column = styled.div`
 `;
 
 export default function FeaturedProduct({ featured_product }) {
-  const { addProduct } = useContext(CartContext);
-
   return (
     <StyledDiv>
       <Center>
@@ -80,20 +79,17 @@ export default function FeaturedProduct({ featured_product }) {
             <ButtonWrapper>
               <ButtonLink
                 href={'/products/' + featured_product._id}
-                $outline
-                $white
+                $outline={'true'}
+                $white={'true'}
                 $size="large"
               >
                 Read More
               </ButtonLink>
-
-              <Button
-                onClick={() => addProduct(featured_product._id)}
-                $size="large"
-              >
-                <CartIcon style={{ marginRight: '8px' }} />
-                Add To Cart
-              </Button>
+              <IconButtonContainer
+                $size={'large'}
+                $primary={'false'}
+                prod_id={featured_product._id}
+              />
             </ButtonWrapper>
           </Column>
 

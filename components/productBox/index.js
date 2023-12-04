@@ -4,6 +4,7 @@ import Button from '../button/Button';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartIcon from '../icons/cart';
+import AddToCartButtonContainer from '../icons/iconButton';
 
 const ProductsWrapper = styled.div``;
 
@@ -59,10 +60,12 @@ export default function ProductBox({ _id, title, description, images, price }) {
           <Title href={url}>{title}</Title>
           <PriceBox>
             <Price>${price}</Price>
-            <Button $primary $outline onClick={() => addProduct(_id)}>
-              <CartIcon />
-              Add To Cart
-            </Button>
+
+            <AddToCartButtonContainer
+              prod_ID={_id}
+              $primary={'true'}
+              $outline={'true'}
+            />
           </PriceBox>
         </ProductInfoBox>
       </div>
