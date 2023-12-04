@@ -27,11 +27,13 @@ const ProductInfoBox = styled.div`
 `;
 
 const Title = styled(Link)`
-  font-weight: none;
+  font-weight: 500;
   font-size: 1rem;
   text-align: center;
   color: inherit;
   text-decoration: none;
+  display: block;
+  min-height: 50px;
 `;
 
 const PriceBox = styled.div`
@@ -47,7 +49,6 @@ const Price = styled.div`
 `;
 
 export default function ProductBox({ _id, title, description, images, price }) {
-  const { addProduct } = useContext(CartContext);
   const url = '/products/' + _id;
 
   return (

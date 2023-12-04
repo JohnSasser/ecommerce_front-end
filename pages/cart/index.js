@@ -141,10 +141,10 @@ export default function CartPage() {
     let totalPrice = 0;
     for (const productID of cartProducts) {
       // iterate over the products and return a product price where ids match.
-      const price = products.find(
-        p => p._id === productID && p.price !== 0
-      ).price;
-      totalPrice += price;
+
+      products.map(p => {
+        if (p._id === productID && p.price !== undefined) totalPrice += p.price;
+      });
     }
 
     return totalPrice.toFixed(2);
