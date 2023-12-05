@@ -141,7 +141,6 @@ export default function CartPage() {
     let totalPrice = 0;
     for (const productID of cartProducts) {
       // iterate over the products and return a product price where ids match.
-
       products.map(p => {
         if (p._id === productID && p.price !== undefined) totalPrice += p.price;
       });
