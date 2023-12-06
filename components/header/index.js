@@ -51,6 +51,9 @@ const StyledNav = styled.nav`
     position: static;
     padding: 0;
   }
+  @media screen and (max-width: 768px) {
+    padding-top: 120px;
+  }
 `;
 
 const NavButton = styled.button`
