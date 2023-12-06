@@ -1,29 +1,29 @@
-[Next.js](https://nextjs.org/) build.
+[Next.js](https://nextjs.org/) eCommerce front-end templated build.
 
-## Getting Started - local environment
-First, run the development server:
-
-```bash/terminal
-npm run dev
-
-```
+# Dashboard
 ![dashboard](./public/dashboard_.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Products 
+![all-products](./public/all_products.png)
+![selected-product](./public/selected-product.png)
+
+# Cart
+![cart](./public/cart.png)
+
+<br></br>
 
 
 # TOOLING
 
-<!-- ## User Auth 
-using [next-auth](https://next-auth.js.org/)
-* [mongdb-adapter](https://authjs.dev/reference/adapter/mongodb) -->
+ ## Stripe Payments Integration
+ [stripe-payment](https://dashboard.stripe.com/) business integration for payment processing. This itegration reroutes to a strip designated url to safely process the paymet .then => redirects back with a response and a payload including meta data defined in the post request.  
+
 
 ## Atlas MongoDB
- atlas cluster [mongodb-dashboard](https://cloud.mongodb.com/v2#/org/5f9f4921d747f670f33c1aca/projectshttps://cloud.mongodb.com/v2#/org/5f9f4921d747f670f33c1aca/projects)
+ atlas cluster [mongodb-dashboard](https://cloud.mongodb.com/v2#/org/5f9f4921d747f670f33c1aca/projectshttps://cloud.mongodb.com/v2#/org/5f9f4921d747f670f33c1aca/projects) used to host the products, user data, catagories (admin), Orders (admin). 
 
  ## Mongoose
-[mongoose documentation for next.js](https://mongoosejs.com/docs/nextjs.html)
-to connect to atlas cluster.
+[mongoose documentation for next.js](https://mongoosejs.com/docs/nextjs.html) providing formatting in connecting to the atlas cluster.
 
 ## StyledComponents
 [Styled Components](https://www.npmjs.com/package/styled-components) 
@@ -32,7 +32,7 @@ used for global style.
 ## heroicons
  [heroicons](heroicons.com)
 
-* Image hosting *
+# Image hosting 
 ## AWS S3
 personal console login:
 [image hosting S3](https://s3.console.aws.amazon.com/s3)
@@ -40,6 +40,21 @@ personal console login:
 
 ## s3 skd for posting to instance
 [aws-sdk/client-s3](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/)
+
+<br></br>
+
+# Dev notes for deployment
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Getting Started - local environment
+fork and open locally, 
+run the development server:
+
+```bash/terminal
+npm run dev
+```
+
 <!-- 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
