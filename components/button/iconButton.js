@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import CartIcon from '../icons/cart';
-import Button from '../button/Button';
+import Button from './Button';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 
@@ -17,38 +17,35 @@ export default function AddToCartButtonContainer(props) {
   const [rotate, setRotate] = useState(false);
 
   function handleClick() {
+    console.log('props: ', props);
     setRotate(!rotate), addProduct(props.prod_ID);
   }
-  console.log(props);
 
   const sizeCase = function () {
     if (props.$size === 'large') return 'large';
     else if (props.$size === 'small') return 'small';
-    else return null;
+    else return;
   };
-  const Icon = () => (
-    <Button
-      $primary={props.$primary === 'true' ? 'true' : null}
-      $outline={props.$outline === 'true' ? 'true' : null}
-      $size={sizeCase()}
-    >
-      <CartIcon />
-      Add To Cart
-    </Button>
-  );
 
   return (
-    <IconButtonWrapper
-      key={props.prod_ID}
-      $rotate={rotate}
-      onClick={() => handleClick()}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+    <Button
+      $primary={props.$primary === 'true' ? 'true' : ''}
+      $outline={props.$outline === 'true' ? 'true' : ''}
+      $size={sizeCase()}
     >
-      <Icon />
-    </IconButtonWrapper>
+      <IconButtonWrapper
+        key={props.prod_ID}
+        $rotate={rotate}
+        onClick={() => handleClick()}
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <CartIcon />
+        Add To Cart
+      </IconButtonWrapper>
+    </Button>
   );
 }

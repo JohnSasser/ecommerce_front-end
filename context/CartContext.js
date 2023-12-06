@@ -19,7 +19,9 @@ export function CartContextProvider({ children }) {
   }, []);
 
   function addProduct(product_ID) {
-    setCartProducts(prev => [...prev, product_ID]);
+    if (product_ID !== null) {
+      setCartProducts(prev => [...prev, product_ID]);
+    }
   }
 
   function removeProduct(productID) {

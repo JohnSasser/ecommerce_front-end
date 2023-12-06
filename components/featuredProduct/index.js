@@ -5,7 +5,7 @@ import ButtonLink from '../button/ButtonLink';
 import CartIcon from '../icons/cart';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import IconButtonContainer from '../icons/iconButton';
+import IconButtonContainer from '../button/iconButton';
 
 const StyledDiv = styled.div`
   background-color: #222;
@@ -88,7 +88,7 @@ export default function FeaturedProduct({ featured_product }) {
               <IconButtonContainer
                 $size={'large'}
                 $primary={'false'}
-                prod_id={featured_product._id}
+                prod_ID={featured_product._id}
               />
             </ButtonWrapper>
           </Column>

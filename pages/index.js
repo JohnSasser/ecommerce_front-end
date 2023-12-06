@@ -3,8 +3,10 @@ import FeaturedProduct from '@/components/featuredProduct';
 import { Product } from '@/models/product_model';
 import { mongooseConnect } from '@/lib/mongoose';
 import NewProducts from '@/components/newProducts';
+import { CartContext } from '@/context/CartContext';
 
 export default function Home({ featured_product, new_products }) {
+  console.log(featured_product, new_products);
   return (
     <div>
       <Header />
