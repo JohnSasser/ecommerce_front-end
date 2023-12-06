@@ -5,7 +5,9 @@ First, run the development server:
 
 ```bash/terminal
 npm run dev
+
 ```
+![dashboard](./public/dashboard_.png)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
