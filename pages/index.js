@@ -4,15 +4,23 @@ import { Product } from '@/models/product_model';
 import { mongooseConnect } from '@/lib/mongoose';
 import NewProducts from '@/components/newProducts';
 import { CartContext } from '@/context/CartContext';
+import styled from 'styled-components';
+
+const AppContainer = styled.div`
+  margin-bottom: 50px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+`;
 
 export default function Home({ featured_product, new_products }) {
   console.log(featured_product, new_products);
   return (
-    <div>
+    <AppContainer>
       <Header />
       <FeaturedProduct featured_product={featured_product} />
       <NewProducts new_products={new_products} />
-    </div>
+    </AppContainer>
   );
 }
 

@@ -7,22 +7,26 @@ import Hamburger from '../icons/burger';
 
 const StyledHeader = styled.header`
   background-color: #222;
+  font-size: 1.35em;
 `;
 
 const Logo = styled(Link)`
   color: #fff;
   text-decoration: none;
   z-index: 3;
+  font-size: 1.5em;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 0;
 `;
 
 const NavLink = styled(Link)`
   display: block;
+  margin-left: 15px;
   color: #aaa;
   text-decoration: none;
   padding: 10px 0;
