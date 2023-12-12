@@ -139,10 +139,17 @@ export default function CartPage() {
 
   const getTotal = () => {
     let totalPrice = 0;
+
     for (const productID of cartProducts) {
       // iterate over the products and return a product price where ids match.
       products.map(p => {
-        if (p._id === productID && p.price !== undefined) totalPrice += p.price;
+        // get the number of instances or each product_id
+        const numOfProd = cartProducts.filter(
+          productID => productID === p._id
+        ).length;
+        // add to the total amount 
+        if (p._id === productID && p.price !== undefined)
+          totalPrice += p.price * numOfProd;
       });
     }
 
