@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Center from '../center';
 import ProductGrid from '../productGrid';
 

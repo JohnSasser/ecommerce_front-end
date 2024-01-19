@@ -97,7 +97,7 @@ export default function FeaturedProduct({ featured_product }) {
             className="col_2"
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <img
+            <Image
               src="https://sasser-next-ecommerce-admin-image-bucket.s3.amazonaws.com/1698952903547-macbookpro.png"
               alt="Featured Product Image"
             />

@@ -55,7 +55,7 @@ export default function ProductBox({ _id, title, description, images, price }) {
     <ProductsWrapper key={_id}>
       <div>
         <WhiteBox href={url}>
-          <div>{<img src={images?.[0]} alt={title + 'image'} />}</div>
+          <div>{<Image src={images?.[0]} alt={title + 'image'} />}</div>
         </WhiteBox>
         <ProductInfoBox>
           <Title href={url}>{title}</Title>

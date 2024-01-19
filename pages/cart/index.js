@@ -135,7 +135,7 @@ export default function CartPage() {
     if (currentUrl?.includes('success=true')) {
       setProducts([]), clearCart(), setPaymentComplete(true);
     }
-  }, [pathname]);
+  }, [pathname, currentUrl, clearCart]);
 
   const getTotal = () => {
     let totalPrice = 0;
@@ -147,7 +147,7 @@ export default function CartPage() {
         const numOfProd = cartProducts.filter(
           productID => productID === p._id
         ).length;
-        // add to the total amount 
+        // add to the total amount
         if (p._id === productID && p.price !== undefined)
           totalPrice += p.price * numOfProd;
       });
@@ -221,7 +221,7 @@ export default function CartPage() {
                       <tbody key={product._id}>
                         <ProductInfoCell>
                           <ProductImageBox>
-                            <img
+                            <Image
                               src={product.images[0]}
                               alt={`product image for ` + product.title}
                             />

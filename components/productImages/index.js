@@ -57,7 +57,10 @@ export default function ProductImages({ images }) {
 
       <ImageButtons>
         {images.map((x, idx) => (
-          <ImageButton active={activeImage === x ? 'true' : 'false'}>
+          <ImageButton
+            key={x + '_' + idx}
+            active={activeImage === x ? 'true' : 'false'}
+          >
             <StyledImage
               onClick={() => setActiveImage(x)}
               src={x}
@@ -67,5 +70,5 @@ export default function ProductImages({ images }) {
         ))}
       </ImageButtons>
     </>
-  )
-};
+  );
+}
