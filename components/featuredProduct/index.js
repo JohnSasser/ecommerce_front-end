@@ -101,6 +101,9 @@ export default function FeaturedProduct({ featured_product }) {
             <Image
               src="https://sasser-next-ecommerce-admin-image-bucket.s3.amazonaws.com/1698952903547-macbookpro.png"
               alt="Featured Product Image"
+              style={{ maxWidth: '800px', maxHeight: '800px' }}
+              width={500}
+              height={500}
             />
           </Column>
         </ColumnsWrapper>
