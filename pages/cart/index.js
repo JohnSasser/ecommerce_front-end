@@ -10,6 +10,7 @@ import { useUrl } from 'nextjs-current-url';
 
 import axios from 'axios';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 const ColumnsWrapper = styled.div`
   display: grid;

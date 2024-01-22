@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartIcon from '../icons/cart';
 import AddToCartButtonContainer from '../button/iconButton';
+import Image from 'next/image';
 
 const ProductsWrapper = styled.div``;
 

@@ -6,6 +6,7 @@ import CartIcon from '../icons/cart';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import IconButtonContainer from '../button/iconButton';
+import Image from 'next/image';
 
 const StyledDiv = styled.div`
   background-color: #222;
