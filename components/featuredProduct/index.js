@@ -6,7 +6,6 @@ import CartIcon from '../icons/cart';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import IconButtonContainer from '../button/iconButton';
-import Image from 'next/image';
 
 const StyledDiv = styled.div`
   background-color: #222;
@@ -16,6 +15,11 @@ const StyledDiv = styled.div`
   @media screen and (min-width: 786px) {
     padding: 20px 0;
   }
+`;
+
+const FeaturedImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
 `;
 
 const Title = styled.h1`
@@ -70,6 +74,7 @@ const Column = styled.div`
 `;
 
 export default function FeaturedProduct({ featured_product }) {
+  console.log(featured_product);
   return (
     <StyledDiv>
       <Center>
@@ -98,12 +103,10 @@ export default function FeaturedProduct({ featured_product }) {
             className="col_2"
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <Image
-              src="https://sasser-next-ecommerce-admin-image-bucket.s3.amazonaws.com/1698952903547-macbookpro.png"
+            <FeaturedImage
+              src={featured_product.images[2]}
               alt="Featured Product Image"
               style={{ maxWidth: '800px', maxHeight: '800px' }}
-              width={500}
-              height={500}
             />
           </Column>
         </ColumnsWrapper>

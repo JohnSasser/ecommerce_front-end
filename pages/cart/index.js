@@ -10,7 +10,7 @@ import { useUrl } from 'nextjs-current-url';
 
 import axios from 'axios';
 import styled from 'styled-components';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -222,7 +222,7 @@ export default function CartPage() {
                       <tbody key={product._id}>
                         <ProductInfoCell>
                           <ProductImageBox>
-                            <Image
+                            <img
                               src={product.images[0]}
                               alt={`product image for ` + product.title}
                             />
