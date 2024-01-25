@@ -6,15 +6,12 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+
   images: {
-    formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'assets.vercel.com',
-        port: '',
-        pathname: '/image/upload/**',
-      },
+    domains: [
+      's3.amazonaws.com',
+      'amazonaws.com',
+      'sasser-next-ecommerce-admin-image-bucket.s3.amazonaws.com',
     ],
   },
 };

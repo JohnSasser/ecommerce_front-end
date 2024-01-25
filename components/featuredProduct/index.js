@@ -6,6 +6,7 @@ import CartIcon from '../icons/cart';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import IconButtonContainer from '../button/iconButton';
+import Image from 'next/image';
 
 const StyledDiv = styled.div`
   background-color: #222;
@@ -103,11 +104,25 @@ export default function FeaturedProduct({ featured_product }) {
             className="col_2"
             style={{ display: 'flex', justifyContent: 'center' }}
           >
-            <FeaturedImage
+            <Image
+              src={`${featured_product.images[2]}`}
+              width={0}
+              height={0}
+              // sizes="100vw"
+              style={{
+                maxWidth: '800px',
+                maxHeight: '500px',
+                height: '100%',
+                width: '100%',
+              }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              alt="featured product"
+            />
+            {/* <FeaturedImage
               src={featured_product.images[2]}
               alt="Featured Product Image"
               style={{ maxWidth: '800px', maxHeight: '800px' }}
-            />
+            /> */}
           </Column>
         </ColumnsWrapper>
       </Center>
